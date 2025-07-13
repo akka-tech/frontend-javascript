@@ -64,4 +64,28 @@ console.log(emp2.constructor.name); // Director
 
 const emp3 = createEmployee("$500");
 console.log(emp3.constructor.name); // Director
+function isDirector(employee: Director | Teacher): employee is Director {
+  return (employee as Director).workDirectorTasks !== undefined;
+}
 
+// Function to execute work based on employee type
+function executeWork(employee: Director | Teacher): void {
+  if (isDirector(employee)) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
+
+// Example usage:
+executeWork(createEmployee(200));   // Output: Getting to work
+executeWork(createEmployee(1000));type Subjects = 'Math' | 'History';
+
+// Function returning a string based on the subject
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else {
+    return 'Teaching History';
+  }
+}
